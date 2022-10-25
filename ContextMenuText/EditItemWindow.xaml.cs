@@ -68,17 +68,10 @@ namespace ContextMenuText
             Product product = SetItem();
 
             var DbContext = new Variant2Context();
-
-            //DbContext.SaveChanges();
-            //DbContext.Products.Update(product);
-
-            
-
             Product item = DbContext.Products
                 .Where(p => p.Id == item_id)
                 .First();
 
-            //item = product;
             item.Title = product.Title;
             item.ProductTypeId = product.ProductTypeId;
             item.ArticleNumber = product.ArticleNumber;
@@ -90,6 +83,10 @@ namespace ContextMenuText
             item.Image = product.Image;
 
             DbContext.SaveChanges();
+
+            // idk why .Update() method does not work, but i think it's good solution for this
+            //DbContext.SaveChanges();
+            //DbContext.Products.Update(product);
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
